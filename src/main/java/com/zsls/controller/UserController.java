@@ -1,6 +1,7 @@
 package com.zsls.controller;
 
-import com.zsls.exception.APIException;
+import com.zsls.enums.APICodeEnum;
+import com.zsls.exception.CustomException;
 import com.zsls.model.User;
 import com.zsls.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserController {
 
     @GetMapping("/getInfo")
     public String addUser() throws Exception{
-        throw new APIException("userError");
+        throw new CustomException(APICodeEnum.API_ERROR);
     }
 
     @GetMapping("/getUser")

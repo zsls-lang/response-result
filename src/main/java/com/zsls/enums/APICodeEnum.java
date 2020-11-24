@@ -1,22 +1,17 @@
 package com.zsls.enums;
 
-public enum ResultEnum implements CodeMessageEnum{
+public enum APICodeEnum implements CodeMessageEnum {
 
-    SUCCESS(1000, "操作成功"),
+    API_ERROR(110002, "api异常");
 
-    FAILED(1001, "响应失败"),
-
-    VALIDATE_FAILED(1002, "参数校验失败"),
-
-    ERROR(5000, "未知错误");
 
     private Integer code;
     private String message;
 
-    ResultEnum() {
+    private APICodeEnum() {
     }
 
-    ResultEnum(Integer code, String message) {
+    APICodeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

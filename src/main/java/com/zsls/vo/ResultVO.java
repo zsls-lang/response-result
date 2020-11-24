@@ -1,5 +1,6 @@
 package com.zsls.vo;
 
+import com.zsls.enums.CodeMessageEnum;
 import com.zsls.enums.ResultEnum;
 
 public class ResultVO<T> {
@@ -40,7 +41,17 @@ public class ResultVO<T> {
         this.data = data;
     }
 
-    private ResultVO(ResultEnum resultEnum, T data) {
+    private ResultVO(Integer code,String message) {
+        this(code,message,null);
+    }
+
+    private ResultVO(Integer code,String message, T data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    private ResultVO(CodeMessageEnum resultEnum, T data) {
         this.code = resultEnum.getCode();
         this.message = resultEnum.getMessage();
         this.data = data;
@@ -63,7 +74,7 @@ public class ResultVO<T> {
     /**
      * 业务成功返回业务代码,描述和返回的参数
      */
-    public static <T> ResultVO<T> success(ResultEnum resultEnum, T data) {
+    public static <T> ResultVO<T> success(CodeMessageEnum resultEnum, T data) {
         if (resultEnum == null) {
             return success(data);
         }
@@ -80,17 +91,22 @@ public class ResultVO<T> {
     /**
      * 业务异常返回业务代码,描述和返回的参数
      */
-    public static <T> ResultVO<T> failure(ResultEnum resultEnum) {
+    public static <T> ResultVO<T> failure(CodeMessageEnum resultEnum) {
         return failure(resultEnum, null);
     }
 
+    public static <T> ResultVO<T> failure(Integer code,String message) {
+        return new ResultVO<T>(code, message);
+    }
     /**
      * 业务异常返回业务代码,描述和返回的参数
      */
-    public static <T> ResultVO<T> failure(ResultEnum resultEnum, T data) {
+    public static <T> ResultVO<T> failure(CodeMessageEnum resultEnum, T data) {
         if (resultEnum == null) {
             return new ResultVO<T>(resultEnum, null);
         }
         return new ResultVO<T>(resultEnum, data);
     }
+
+
 }
