@@ -18,8 +18,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 /**
  * @author zsls
  * @version $Id ResponseControllerAdvice.java, v 0.1 2020-11-24 16:08  Exp $$
+ * 指定扫描包下面的接口统一返回
  */
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = {"com.zsls.controller"})
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
