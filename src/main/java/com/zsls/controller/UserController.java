@@ -22,7 +22,9 @@ public class UserController {
 
     @GetMapping("/getInfo")
     public String addUser() throws Exception{
-        throw new CustomException(APICodeEnum.API_ERROR);
+        throw new CustomException("自定义的错误",APICodeEnum.API_ERROR);
+//       int a =  1/0;
+//        return "342432";
     }
 
     @GetMapping("/getUser")

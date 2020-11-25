@@ -5,6 +5,8 @@ import com.zsls.enums.ExceptionEnum;
 import com.zsls.enums.ResultEnum;
 import com.zsls.exception.CustomException;
 import com.zsls.vo.ResultVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,14 +21,16 @@ import java.sql.SQLException;
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
 
+    private final Logger logger = LoggerFactory.getLogger(ExceptionControllerAdvice.class);
 
     @ExceptionHandler(Exception.class)
     public ResultVO handleException(Exception ex) {
+        logger.error("记录异常{}",ex);
         Throwable throwable = null;
         ExceptionEnum exceptionEnum = null;
         if (ex instanceof CustomException) {
             CustomException customException = (CustomException) ex;
-            return ResultVO.failure(customException.getCodeMessageEnum());
+            return ResultVO.failure(customException.getCodeMessageEnum(),ex.getMessage());
         } else if (ex instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException argumentNotValidException = (MethodArgumentNotValidException) ex;
             // 从异常对象中拿到ObjectError对象
@@ -38,25 +42,16 @@ public class ExceptionControllerAdvice {
                 throwable = ex.getCause();
                 exceptionEnum = this.getExceptionEnum(throwable);
                 if (exceptionEnum != null) {
-                    return ResultVO.failure(exceptionEnum.getErrCode(), exceptionEnum.getErrMsg());
+                    return ResultVO.failure(exceptionEnum, ex.getMessage());
                 }
             } else {
                 exceptionEnum = this.getExceptionEnum(ex);
                 if (exceptionEnum != null) {
-                    return ResultVO.failure(exceptionEnum.getErrCode(), exceptionEnum.getErrMsg());
+                    return ResultVO.failure(exceptionEnum, ex.getMessage());
                 }
             }
 
-            return ResultVO.failure(-1, "未知错误");
-        }
-    }
-
-    private CodeMessageEnum getSystemException(Throwable ex) {
-        if (ex instanceof CustomException) {
-            CustomException customException = (CustomException) ex;
-            return customException.getCodeMessageEnum();
-        } else {
-            return null;
+            return ResultVO.failure(ExceptionEnum.Exception,ex.getMessage());
         }
     }
 

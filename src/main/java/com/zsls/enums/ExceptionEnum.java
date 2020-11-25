@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-public enum ExceptionEnum {
+public enum ExceptionEnum implements CodeMessageEnum{
     NullPointer(-1001, "空指针异常", NullPointerException.class.getName(), "空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等。"),
     ClassCast(-1002, "强制类型转换异常", ClassCastException.class.getName(), "类造型异常。假设有类A和B（A不是B的父类或子类），O是A的实例，那么当强制将O构造为类B的实例时抛出该异常。该异常经常被称为强制类型转换异常。"),
     ArrayIndexOutOfBounds(-1003, "数组下标越界异常", ArrayIndexOutOfBoundsException.class.getName(), ""),
@@ -21,32 +21,24 @@ public enum ExceptionEnum {
     Runtime(-2, "运行时异常", RuntimeException.class.getName(), "是所有Java虚拟机正常操作期间可以被抛出的异常的父类。"),
     Exception(-1, "未知的错误", Exception.class.getName(), "系统最大的exception父类");
 
-    private String errMsg;
-    private String description;
+    private Integer code;
+    private String message;
     private String exceptionName;
-    private Integer errCode;
+    private String description;
 
-    private ExceptionEnum(Integer errCode, String errMsg, String exceptionName, String description) {
-        this.errCode = errCode;
-        this.errMsg = errMsg;
-        this.exceptionName = exceptionName;
+    ExceptionEnum(Integer code, String message, String exceptionName, String description) {
+        this.code = code;
+        this.message = message;
         this.description = description;
+        this.exceptionName = exceptionName;
     }
 
-    public String getErrMsg() {
-        return this.errMsg;
+    @Override public Integer getCode() {
+        return code;
     }
 
-    public void setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
-    }
-
-    public Integer getErrCode() {
-        return this.errCode;
-    }
-
-    public void setErrCode(Integer errCode) {
-        this.errCode = errCode;
+    @Override public String getMessage() {
+        return message;
     }
 
     public String getDescription() {

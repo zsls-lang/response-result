@@ -80,12 +80,18 @@ public class ResultVO<T> {
         }
         return new ResultVO<T>(resultEnum, data);
     }
+    public static <T> ResultVO<T> success(Integer code,String message) {
+        return new ResultVO<T>(code, message);
+    }
+    public static <T> ResultVO<T> success(Integer code,String message,T data) {
+        return new ResultVO<T>(code, message,data);
+    }
 
     /**
      * 业务异常返回业务代码和描述信息
      */
     public static <T> ResultVO<T> failure() {
-        return new ResultVO<T>(ResultEnum.ERROR, null);
+        return new ResultVO<T>(ResultEnum.FAILED, null);
     }
 
     /**
@@ -97,6 +103,9 @@ public class ResultVO<T> {
 
     public static <T> ResultVO<T> failure(Integer code,String message) {
         return new ResultVO<T>(code, message);
+    }
+    public static <T> ResultVO<T> failure(Integer code,String message,T data) {
+        return new ResultVO<T>(code, message,data);
     }
     /**
      * 业务异常返回业务代码,描述和返回的参数
