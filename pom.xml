@@ -16,6 +16,18 @@
 
     <properties>
         <java.version>1.8</java.version>
+
+        <!--common -->
+        <commons-lang3>3.11</commons-lang3>
+
+        <!--mysql && pagehelper -->
+        <mysql-connector-java>5.1.49</mysql-connector-java>
+        <mapper-spring-boot-starter>2.1.5</mapper-spring-boot-starter>
+        <pagehelper-spring-boot-starter>1.2.10</pagehelper-spring-boot-starter>
+
+         <!-- validator-->
+        <hibernate-validator>6.1.5.Final</hibernate-validator>
+
     </properties>
 
     <dependencies>
@@ -28,8 +40,38 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.1.5.Final</version>
+            <version>${hibernate-validator}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java}</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${mapper-spring-boot-starter}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper-spring-boot-starter}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                    <artifactId>mybatis-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
 
 
         <dependency>
