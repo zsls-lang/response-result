@@ -10,4 +10,9 @@ public class UserServiceImpl implements UserService {
     public String addUser(User user) {
         return "success";
     }
+
+    @Override
+    public User addUser1(User user) {
+        return user;
+    }
 }

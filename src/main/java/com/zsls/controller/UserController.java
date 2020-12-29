@@ -4,6 +4,8 @@ import com.zsls.enums.APICodeEnum;
 import com.zsls.exception.CustomException;
 import com.zsls.model.User;
 import com.zsls.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户测试")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -18,6 +21,12 @@ public class UserController {
     @PostMapping("/addUser")
     public String addUser(@RequestBody @Valid User user) {
         return userService.addUser(user);
+    }
+
+    @PostMapping("/addUser1")
+    @ApiOperation("测试用户了1")
+    public User addUser1(@Valid User user) {
+        return userService.addUser1(user);
     }
 
     @GetMapping("/getInfo")

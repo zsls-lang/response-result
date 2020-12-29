@@ -25,8 +25,16 @@
         <mapper-spring-boot-starter>2.1.5</mapper-spring-boot-starter>
         <pagehelper-spring-boot-starter>1.2.10</pagehelper-spring-boot-starter>
 
-         <!-- validator-->
+        <mybatis-expands-generator>1.1.0</mybatis-expands-generator>
+        <mybatis-generator-maven-plugin>1.3.7</mybatis-generator-maven-plugin>
+
+        <!-- validator-->
         <hibernate-validator>6.1.5.Final</hibernate-validator>
+
+        <!-- swagger -->
+        <springfox>2.9.2</springfox>
+        <springfox-UI>1.9.6</springfox-UI>
+        <swagger.version>1.5.22</swagger.version>
 
     </properties>
 
@@ -36,7 +44,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -71,7 +78,43 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox}</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-models</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${springfox-UI}</version>
+        </dependency>
 
 
         <dependency>
@@ -92,6 +135,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>${mybatis-generator-maven-plugin}</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.zsls-lang</groupId>
+                        <artifactId>mybatis-expands-generator</artifactId>
+                        <version>${mybatis-expands-generator}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

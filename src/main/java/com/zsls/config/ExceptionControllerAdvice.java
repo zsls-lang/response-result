@@ -7,6 +7,7 @@ import com.zsls.exception.CustomException;
 import com.zsls.vo.ResultVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,7 +26,7 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResultVO handleException(Exception ex) {
-        logger.error("记录异常{}",ex);
+        logger.error("记录异常",ex);
         Throwable throwable = null;
         ExceptionEnum exceptionEnum = null;
         if (ex instanceof CustomException) {
@@ -37,7 +38,13 @@ public class ExceptionControllerAdvice {
             ObjectError objectError = argumentNotValidException.getBindingResult().getAllErrors().get(0);
             // 然后提取错误提示信息进行返回
             return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
-        } else {
+        } else if (ex instanceof BindException) {
+            BindException bindException = (BindException) ex;
+            // 从异常对象中拿到ObjectError对象
+            ObjectError objectError = bindException.getBindingResult().getAllErrors().get(0);
+            // 然后提取错误提示信息进行返回
+            return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
+        }else {
             if (ex instanceof UndeclaredThrowableException) {
                 throwable = ex.getCause();
                 exceptionEnum = this.getExceptionEnum(throwable);

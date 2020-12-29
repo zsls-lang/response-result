@@ -9,4 +9,6 @@ public interface UserService {
      * @return 成功则返回"success"，失败则返回错误信息
      */
     String addUser(User user);
+
+    User addUser1(User user);
 }

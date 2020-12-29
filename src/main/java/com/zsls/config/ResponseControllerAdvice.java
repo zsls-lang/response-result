@@ -7,6 +7,8 @@ package com.zsls.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zsls.vo.ResultVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -22,6 +24,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 @RestControllerAdvice(basePackages = {"com.zsls.controller"})
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
+
+    Logger logger = LoggerFactory.getLogger(ResponseControllerAdvice.class);
+
+
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         // 如果接口返回的类型本身就是ResultVO那就没有必要进行额外的操作，返回false
@@ -38,7 +44,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
             try {
                 return objectMapper.writeValueAsString(ResultVO.success(o));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
 
