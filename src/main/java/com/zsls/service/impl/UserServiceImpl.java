@@ -1,5 +1,6 @@
 package com.zsls.service.impl;
 
+import com.zsls.common.base.BaseServiceImpl;
 import com.zsls.model.User;
 import com.zsls.service.UserService;
 import org.springframework.stereotype.Service;

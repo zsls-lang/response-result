@@ -2,11 +2,11 @@
  * Company
  * Copyright (C) 2004-2020 All Rights Reserved.
  */
-package com.zsls.config;
+package com.zsls.common.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zsls.vo.ResultVO;
+import com.zsls.common.vo.ResultVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;

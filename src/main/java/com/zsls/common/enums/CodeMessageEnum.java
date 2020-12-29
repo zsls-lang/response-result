@@ -1,4 +1,4 @@
-package com.zsls.enums;
+package com.zsls.common.enums;
 
 public interface CodeMessageEnum {
     Integer getCode();

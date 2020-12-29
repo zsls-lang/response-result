@@ -1,4 +1,4 @@
-package com.zsls.base;
+package com.zsls.common.base;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;

@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.zsls.base;
+package com.zsls.common.base;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

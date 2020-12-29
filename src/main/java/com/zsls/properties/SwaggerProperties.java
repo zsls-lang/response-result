@@ -1,10 +1,12 @@
 package com.zsls.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties("swagger")
+@ConfigurationProperties(prefix = "swagger")
+@PropertySource(value = "classpath:swagger.properties",ignoreResourceNotFound = true,encoding = "UTF-8")
 public class SwaggerProperties {
     /**
      * 是否开启swagger，生产环境一般关闭，所以这里定义一个变量
@@ -25,11 +27,6 @@ public class SwaggerProperties {
      * 项目描述信息
      */
     private String applicationDescription;
-
-    /**
-     * 接口调试地址
-     */
-    private String tryHost;
 
     /**
      * 作者邮箱
@@ -89,11 +86,4 @@ public class SwaggerProperties {
         this.applicationDescription = applicationDescription;
     }
 
-    public String getTryHost() {
-        return tryHost;
-    }
-
-    public void setTryHost(String tryHost) {
-        this.tryHost = tryHost;
-    }
 }

@@ -1,6 +1,6 @@
-package com.zsls.exception;
+package com.zsls.common.exception;
 
-import com.zsls.enums.CodeMessageEnum;
+import com.zsls.common.enums.CodeMessageEnum;
 
 public class CustomException extends Exception {
 

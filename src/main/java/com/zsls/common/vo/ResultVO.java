@@ -1,7 +1,7 @@
-package com.zsls.vo;
+package com.zsls.common.vo;
 
-import com.zsls.enums.CodeMessageEnum;
-import com.zsls.enums.ResultEnum;
+import com.zsls.common.enums.CodeMessageEnum;
+import com.zsls.common.enums.ResultEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

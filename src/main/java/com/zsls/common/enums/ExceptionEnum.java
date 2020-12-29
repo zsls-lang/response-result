@@ -1,4 +1,4 @@
-package com.zsls.enums;
+package com.zsls.common.enums;
 
 import java.io.EOFException;
 import java.io.FileNotFoundException;

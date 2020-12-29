@@ -1,4 +1,7 @@
-package com.zsls.base;
+package com.zsls.common.base;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -121,6 +124,31 @@ import java.util.List;
 	 * @return
 	 */
 	Integer deleteByWhere(T record) ;
+
+	/**
+	 * 分页查询
+	 *
+	 * @param pageNum
+	 * @param pageSize
+	 * @param record      查询参数
+	 * @return 分页集合
+	 */
+	default PageInfo<T> page(T record, Integer pageNum, Integer pageSize) {
+		return PageHelper.startPage(pageNum,pageSize).doSelectPageInfo(() -> queryListByCondition(record));
+	}
+
+	/**
+	 * 分页查询
+	 *
+	 * @param pageNum
+	 * @param pageSize
+	 * @param orderBy
+	 * @param record      查询参数
+	 * @return 分页集合
+	 */
+	default PageInfo<T> page(T record, Integer pageNum, Integer pageSize, String orderBy) {
+		return PageHelper.startPage(pageNum,pageSize,orderBy).doSelectPageInfo(() -> queryListByCondition(record));
+	}
 
 
 }

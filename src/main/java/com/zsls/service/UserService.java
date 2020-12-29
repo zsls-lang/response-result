@@ -1,5 +1,6 @@
 package com.zsls.service;
 
+import com.zsls.common.base.IBaseService;
 import com.zsls.model.User;
 
 public interface UserService {

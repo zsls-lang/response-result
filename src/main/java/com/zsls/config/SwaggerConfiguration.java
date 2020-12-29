@@ -1,10 +1,13 @@
 package com.zsls.config;
 
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
+import com.zsls.common.utils.InetUtils;
 import com.zsls.properties.SwaggerProperties;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,11 +32,12 @@ import java.util.*;
 @Configuration
 @EnableSwaggerBootstrapUI
 public class SwaggerConfiguration implements WebMvcConfigurer {
-    private final SwaggerProperties swaggerProperties;
 
-    public SwaggerConfiguration(SwaggerProperties swaggerProperties) {
-        this.swaggerProperties = swaggerProperties;
-    }
+    @Value("${server.port}")
+    private String port;
+
+    @Autowired
+    private SwaggerProperties swaggerProperties;
 
     @Bean
     public Docket createRestApi() {
@@ -47,7 +51,7 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
             .apiInfo(apiInfo())
 
             // 接口调试地址
-//            .host(swaggerProperties.getTryHost())
+            .host(InetUtils.getHost() + ":" + this.port)
 
             // 选择哪些接口作为swagger的doc发布
             .select()

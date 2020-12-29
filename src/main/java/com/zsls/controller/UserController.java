@@ -1,7 +1,7 @@
 package com.zsls.controller;
 
-import com.zsls.enums.APICodeEnum;
-import com.zsls.exception.CustomException;
+import com.zsls.common.enums.APICodeEnum;
+import com.zsls.common.exception.CustomException;
 import com.zsls.model.User;
 import com.zsls.service.UserService;
 import io.swagger.annotations.Api;

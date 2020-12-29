@@ -1,6 +1,6 @@
 package com.zsls.controller;
 
-import com.zsls.vo.ResultVO;
+import com.zsls.common.vo.ResultVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

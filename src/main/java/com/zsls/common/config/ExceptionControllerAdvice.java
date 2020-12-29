@@ -1,10 +1,9 @@
-package com.zsls.config;
+package com.zsls.common.config;
 
-import com.zsls.enums.CodeMessageEnum;
-import com.zsls.enums.ExceptionEnum;
-import com.zsls.enums.ResultEnum;
-import com.zsls.exception.CustomException;
-import com.zsls.vo.ResultVO;
+import com.zsls.common.enums.ExceptionEnum;
+import com.zsls.common.enums.ResultEnum;
+import com.zsls.common.exception.CustomException;
+import com.zsls.common.vo.ResultVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
