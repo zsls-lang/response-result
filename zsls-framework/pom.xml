@@ -63,6 +63,10 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                            <mainClass>com.zsls.ResponseResultApplication</mainClass>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -93,6 +97,7 @@
                 </dependencies>
             </plugin>
         </plugins>
+        <finalName>${project.artifactId}</finalName>
     </build>
 
 </project>
