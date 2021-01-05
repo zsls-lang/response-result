@@ -30,7 +30,7 @@
         <commons-lang3>3.11</commons-lang3>
 
         <!--阿里数据库连接池 -->
-        <druid.version>1.2.2</druid.version>
+        <druid.version>1.2.4</druid.version>
 
         <!--mysql && pagehelper -->
         <mysql-connector-java>5.1.49</mysql-connector-java>
@@ -54,11 +54,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
@@ -90,6 +85,13 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -106,6 +108,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>

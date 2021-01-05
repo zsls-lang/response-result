@@ -9,7 +9,7 @@
         <property name="javaFileEncoding" value="UTF-8"/>
 
 
-        <plugin type="com.zsls.common.config.MapperPlugin">
+        <plugin type="com.github.zsls.config.MapperPlugin">
             <property name="mappers" value="com.zsls.common.base.BaseMapper"/>
             <property name="targetPackage" value="com.zsls.service"/>
             <property name="targetProject" value="src/main/java"/>
@@ -19,7 +19,7 @@
             <property name="baseService" value="IBaseService"/>
             <property name="baseServicePackage" value="com.zsls.common.base.IBaseService"/>
             <property name="enableCreateService" value="true"/>
-            <property name="enableCreateController" value="true"/>
+            <property name="enableCreateController" value="false"/>
 
             <property name="baseController" value="BaseController"/>
             <property name="baseControllerPackage" value="com.zsls.common.base.BaseController"/>
@@ -28,7 +28,7 @@
         </plugin>
 
         <!-- 这里的type里写的是你的实现类的类全路径 -->
-        <commentGenerator type="com.zsls.common.config.MybatisCommentGenerator">
+        <commentGenerator type="com.github.zsls.config.MybatisCommentGenerator">
             <property name="suppressAllComments" value="false"/>
             <!--<property name="suppressDate" value="true"/>-->
         </commentGenerator>
@@ -37,10 +37,11 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://106.75.215.46:3306/rule_web_local?useSSL=false"
                         userId="root"
-                        password="zs@@@ls@123####@@@">
+                        password="##zsls##@123##">
         </jdbcConnection>
 
-        <!--<javaModelGenerator targetPackage="com.sunmnet.basedata.model" targetProject="D:\sunmnet_work_new\xnykdx\BigData.XNYKDX.WEB\sunmnet-basedata\sunmnet-basedata-model\src/main/java"/>-->
+        <!--<javaModelGenerator targetPackage="com.zsls.basedata.model"
+        targetProject="D:\work_new\DX.WEB\basedata\basedata-model\src/main/java"/>-->
         <javaModelGenerator targetPackage="com.zsls.entity" targetProject="src/main/java">
             <!--<property name="immutable" value="true"/>-->
             <property name="rootClass" value="com.zsls.common.base.BaseModel"/>

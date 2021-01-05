@@ -2,7 +2,6 @@ package com.zsls.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.Tag;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
