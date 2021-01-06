@@ -1,4 +1,4 @@
-package com.zsls.properties;
+package com.zsls.framework.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "swagger")
 @PropertySource(value = "classpath:swagger.properties",ignoreResourceNotFound = true,encoding = "UTF-8")
 public class SwaggerProperties {
+
     /**
      * 是否开启swagger，生产环境一般关闭，所以这里定义一个变量
      */

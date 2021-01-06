@@ -1,9 +1,9 @@
-package com.zsls.controller;
+package com.zsls.framework.controller;
 
 import com.zsls.common.enums.APICodeEnum;
 import com.zsls.common.exception.CustomException;
-import com.zsls.model.User;
-import com.zsls.service.UserService;
+import com.zsls.framework.model.User;
+import com.zsls.framework.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

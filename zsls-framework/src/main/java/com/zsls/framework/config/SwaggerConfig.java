@@ -1,8 +1,8 @@
-package com.zsls.config;
+package com.zsls.framework.config;
 
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import com.zsls.common.utils.InetUtils;
-import com.zsls.properties.SwaggerProperties;
+import com.zsls.framework.properties.SwaggerProperties;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -12,10 +12,7 @@ import org.springframework.boot.SpringBootVersion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -29,15 +26,20 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 @EnableSwagger2
+@EnableWebMvc
 @Configuration
 @EnableSwaggerBootstrapUI
-public class SwaggerConfiguration implements WebMvcConfigurer {
+public class SwaggerConfig implements WebMvcConfigurer {
 
     @Value("${server.port}")
     private String port;
 
-    @Autowired
-    private SwaggerProperties swaggerProperties;
+    private final SwaggerProperties swaggerProperties;
+
+    public SwaggerConfig(SwaggerProperties swaggerProperties) {
+        this.swaggerProperties = swaggerProperties;
+    }
+
 
     @Bean
     public Docket createRestApi() {
@@ -134,9 +136,7 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
     }
 
     /**
-     * 显示swagger-ui.html文档展示页，还必须注入swagger资源：
-     *
-     * @param registry
+     * 显示swagger-ui.html文档展示页，还必须注入swagger资源
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

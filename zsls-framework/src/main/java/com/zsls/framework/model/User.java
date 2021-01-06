@@ -1,5 +1,6 @@
-package com.zsls.model;
+package com.zsls.framework.model;
 
+import com.zsls.common.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -7,8 +8,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@ApiModel(value = "281-学校信息表", description = "281-学校信息表")
-public class User {
+@ApiModel(value = "用户信息表", description = "用户信息表")
+public class User extends BaseModel {
 
     @NotNull(message = "用户id不能为空")
     @ApiModelProperty(value = "id")

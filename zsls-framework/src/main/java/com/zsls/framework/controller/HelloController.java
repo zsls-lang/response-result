@@ -1,4 +1,4 @@
-package com.zsls.controller;
+package com.zsls.framework.controller;
 
 import com.zsls.common.vo.ResultVO;
 import org.springframework.web.bind.annotation.GetMapping;

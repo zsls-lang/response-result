@@ -1,4 +1,4 @@
-package com.zsls;
+package com.zsls.framework;
 
 import com.zsls.common.utils.InetUtils;
 import org.slf4j.Logger;
@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import tk.mybatis.spring.annotation.MapperScan;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.zsls.dao")
-public class ResponseResultApplication implements CommandLineRunner {
+public class FrameworkApplication implements CommandLineRunner {
 
-    protected Logger logger = LoggerFactory.getLogger(ResponseResultApplication.class);
+    protected Logger logger = LoggerFactory.getLogger(FrameworkApplication.class);
 
     @Value("${server.port}")
     private String port;
 
     public static void main(String[] args) {
-        SpringApplication.run(ResponseResultApplication.class, args);
+        SpringApplication.run(FrameworkApplication.class, args);
     }
 
     @Override public void run(String... args) throws Exception {

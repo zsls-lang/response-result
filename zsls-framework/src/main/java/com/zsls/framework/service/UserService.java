@@ -1,7 +1,6 @@
-package com.zsls.service;
+package com.zsls.framework.service;
 
-import com.zsls.common.base.IBaseService;
-import com.zsls.model.User;
+import com.zsls.framework.model.User;
 
 public interface UserService {
     /**

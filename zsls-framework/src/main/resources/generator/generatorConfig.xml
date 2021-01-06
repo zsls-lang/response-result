@@ -11,7 +11,7 @@
 
         <plugin type="com.github.zsls.config.MapperPlugin">
             <property name="mappers" value="com.zsls.common.base.BaseMapper"/>
-            <property name="targetPackage" value="com.zsls.service"/>
+            <property name="targetPackage" value="com.zsls.framework.service"/>
             <property name="targetProject" value="src/main/java"/>
             <property name="baseServiceImpl" value="BaseServiceImpl"/>
             <property name="baseServiceImplPackage" value="com.zsls.common.base.BaseServiceImpl"/>
@@ -23,7 +23,7 @@
 
             <property name="baseController" value="BaseController"/>
             <property name="baseControllerPackage" value="com.zsls.common.base.BaseController"/>
-            <property name="controllerTargetPackage" value="com.zsls.controller"/>
+            <property name="controllerTargetPackage" value="com.zsls.framework.controller"/>
             <property name="controllerTargetProject" value="src/main/java"/>
         </plugin>
 
@@ -42,7 +42,7 @@
 
         <!--<javaModelGenerator targetPackage="com.zsls.basedata.model"
         targetProject="D:\work_new\DX.WEB\basedata\basedata-model\src/main/java"/>-->
-        <javaModelGenerator targetPackage="com.zsls.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.zsls.framework.model" targetProject="src/main/java">
             <!--<property name="immutable" value="true"/>-->
             <property name="rootClass" value="com.zsls.common.base.BaseModel"/>
             <property name="trimStrings" value="true"/>
@@ -51,7 +51,7 @@
 
         <sqlMapGenerator targetPackage="mybatis.statis" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.zsls.dao" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.zsls.framework.dao" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
         <table tableName="t_school_info">

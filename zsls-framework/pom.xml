@@ -2,19 +2,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>zsls-framework</artifactId>
+    <description>Demo project for Spring Boot</description>
+
     <parent>
         <groupId>com.zsls</groupId>
         <artifactId>response-result</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zsls-framework</artifactId>
-    <description>Demo project for Spring Boot</description>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot </groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- spring-boot-devtools -->
@@ -25,18 +36,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.zsls</groupId>
-            <artifactId>zsls-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java}</version>
         </dependency>
 
         <dependency>
@@ -54,6 +56,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
@@ -62,6 +69,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional><!-- 表示依赖不会传递 -->
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.zsls</groupId>
+            <artifactId>zsls-common</artifactId>
         </dependency>
 
     </dependencies>
@@ -81,7 +94,7 @@
                         </goals>
                         <configuration>
                             <classifier>exec</classifier>
-                            <mainClass>com.zsls.ResponseResultApplication</mainClass>
+                            <mainClass>com.zsls.framework.FrameworkApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
