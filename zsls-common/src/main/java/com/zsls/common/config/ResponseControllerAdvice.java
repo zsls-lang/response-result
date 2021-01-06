@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @version $Id ResponseControllerAdvice.java, v 0.1 2020-11-24 16:08  Exp $$
  * 指定扫描包下面的接口统一返回
  */
-@RestControllerAdvice(basePackages = {"com.zsls.framework.controller"})
+@RestControllerAdvice
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
 
     Logger logger = LoggerFactory.getLogger(ResponseControllerAdvice.class);
