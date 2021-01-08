@@ -19,6 +19,7 @@
     <modules>
         <module>zsls-common</module>
         <module>zsls-framework</module>
+<!--        <module>zsls-push</module>//推送平台-->
     </modules>
 
     <properties>
