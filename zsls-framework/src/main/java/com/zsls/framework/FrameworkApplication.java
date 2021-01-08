@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @SpringBootApplication
+@ComponentScan(basePackages={"com.zsls.*"})//需要扫描到common包下的类
 public class FrameworkApplication implements CommandLineRunner {
 
     protected Logger logger = LoggerFactory.getLogger(FrameworkApplication.class);
