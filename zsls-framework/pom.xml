@@ -75,6 +75,12 @@
         <dependency>
             <groupId>com.zsls</groupId>
             <artifactId>zsls-common</artifactId>
+           <!-- <exclusions>
+                <exclusion>
+                    <artifactId>mapper-spring-boot-starter</artifactId>
+                    <groupId>tk.mybatis</groupId>
+                </exclusion>
+            </exclusions>-->
         </dependency>
 
     </dependencies>
