@@ -49,6 +49,7 @@
         <zsls.version>0.0.1-SNAPSHOT</zsls.version>
 
         <hibernate.validator>6.2.0.Final</hibernate.validator>
+        <hutool.version>5.6.7</hutool.version>
 
     </properties>
 
@@ -115,6 +116,14 @@
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
 
             <!-- 通用基础工具-->
             <dependency>
