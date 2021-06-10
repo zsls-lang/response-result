@@ -2,7 +2,7 @@ package com.zsls.common.exception;
 
 import com.zsls.common.enums.CodeMessageEnum;
 
-public class CustomException extends Exception {
+public class CustomException extends RuntimeException {
 
     private CodeMessageEnum codeMessageEnum;
 
@@ -15,6 +15,7 @@ public class CustomException extends Exception {
     }
 
     public CustomException(CodeMessageEnum codeMessageEnum) {
+        super(codeMessageEnum.getMessage());
         this.codeMessageEnum = codeMessageEnum;
     }
 

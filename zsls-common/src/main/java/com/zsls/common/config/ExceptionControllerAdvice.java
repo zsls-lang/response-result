@@ -39,9 +39,7 @@ public class ExceptionControllerAdvice {
             return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
         } else if (ex instanceof BindException) {
             BindException bindException = (BindException) ex;
-            // 从异常对象中拿到ObjectError对象
             ObjectError objectError = bindException.getBindingResult().getAllErrors().get(0);
-            // 然后提取错误提示信息进行返回
             return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
         }else {
             if (ex instanceof UndeclaredThrowableException) {
