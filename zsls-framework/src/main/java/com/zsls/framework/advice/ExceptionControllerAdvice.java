@@ -1,4 +1,4 @@
-package com.zsls.common.config;
+package com.zsls.framework.advice;
 
 import com.zsls.common.enums.ExceptionEnum;
 import com.zsls.common.enums.ResultEnum;

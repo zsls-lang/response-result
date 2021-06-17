@@ -2,7 +2,7 @@
  * Company
  * Copyright (C) 2004-2020 All Rights Reserved.
  */
-package com.zsls.common.config;
+package com.zsls.framework.advice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +22,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @version $Id ResponseControllerAdvice.java, v 0.1 2020-11-24 16:08  Exp $$
  * 指定扫描包下面的接口统一返回
  */
-@RestControllerAdvice(basePackages = {"${response.scan.package}"})
+//@RestControllerAdvice(basePackages = {"${response.scan.package}"})
+@RestControllerAdvice
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
 
     Logger logger = LoggerFactory.getLogger(ResponseControllerAdvice.class);
