@@ -1,8 +1,8 @@
 package com.zsls.framework.aop;
 
 import cn.hutool.json.JSONUtil;
-import com.zsls.framework.DTO.RequestErrorInfoDTO;
-import com.zsls.framework.DTO.RequestInfoDTO;
+import com.zsls.framework.dto.RequestErrorInfoDTO;
+import com.zsls.framework.dto.RequestInfoDTO;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;

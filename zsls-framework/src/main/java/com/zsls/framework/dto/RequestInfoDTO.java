@@ -1,4 +1,4 @@
-package com.zsls.framework.DTO;
+package com.zsls.framework.dto;
 
 public class RequestInfoDTO {
       private String ip;
