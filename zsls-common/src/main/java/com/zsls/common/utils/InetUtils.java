@@ -13,6 +13,7 @@ import java.net.InetAddress;
 public class InetUtils {
 
     private static final String DEFAULT_HOST = "localhost";
+    private static final String DEFAULT_HOST_IP = "127.0.0.1";
     public static String getHost() {
         try {
             InetAddress addr = InetAddress.getLocalHost();

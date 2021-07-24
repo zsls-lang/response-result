@@ -13,6 +13,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,7 +33,8 @@ public class RequestLogAspect {
 
     @Around("requestServer()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        long start = System.currentTimeMillis();
+        StopWatch stopWatch = new  StopWatch();
+        stopWatch.start();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         Object result = proceedingJoinPoint.proceed();
@@ -44,7 +46,8 @@ public class RequestLogAspect {
                 proceedingJoinPoint.getSignature().getName()));
         RequestInfoDTO.setRequestParams(getRequestParamsByProceedingJoinPoint(proceedingJoinPoint));
         RequestInfoDTO.setResult(result);
-        RequestInfoDTO.setTimeCost(System.currentTimeMillis() - start);
+        stopWatch.stop();
+        RequestInfoDTO.setTimeCost(stopWatch.getTotalTimeMillis());
         LOGGER.info("Request Info      : {}",JSONUtil.toJsonStr(RequestInfoDTO));
 
         return result;
