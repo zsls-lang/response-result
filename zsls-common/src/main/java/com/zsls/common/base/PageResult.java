@@ -31,7 +31,7 @@ public class PageResult<T> implements Serializable {
 
 	public Long getTotalPage() {
 		if (this.getPageSize() != null) {
-			return this.getPageSize() == 0 ? 0L : (this.getTotalRows() + (long)this.getPageSize() - 1L) / (long)this.getPageSize();
+			return this.getPageSize() == 0 ? 0L : (this.getTotalRows() - 1L) / this.getPageSize()+1;
 		} else {
 			return this.totalPage;
 		}

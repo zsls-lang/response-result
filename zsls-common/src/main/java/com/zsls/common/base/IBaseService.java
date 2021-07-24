@@ -1,5 +1,6 @@
 package com.zsls.common.base;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -44,21 +45,27 @@ import java.util.List;
 	/**
 	 * 分页查询
 	 *
-	 * @param page
-	 * @param rows
+	 * @param pageNum
+	 * @param pageSize
 	 * @param record
 	 * @return
 	 */
-	 PageResult<T> queryPageListByCondition(T record, Integer page, Integer rows) ;
+	 default PageResult<T> queryPageListByCondition(T record, Integer pageNum, Integer pageSize){
+		 Page<T> page = PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> queryListByCondition(record));
+		 return new PageResult<T>(page.getResult(), page.getTotal(), pageNum, pageSize);
+	 }
 	/**
 	 * 分页查询
 	 *	排序
-	 * @param page
-	 * @param rows
+	 * @param pageNum
+	 * @param pageSize
 	 * @param record
 	 * @return
 	 */
-	PageResult<T> queryPageListOrderByCondition(T record, Integer page, Integer rows, String order) ;
+	default PageResult<T> queryPageListOrderByCondition(T record, Integer pageNum, Integer pageSize, String order){
+		Page<T> page = PageHelper.startPage(pageNum, pageSize,order).doSelectPage(() -> queryListByCondition(record));
+		return new PageResult<T>(page.getResult(), page.getTotal(), pageNum, pageSize);
+	} ;
 
 	/**
 	 * 新增数据，返回成功的条数

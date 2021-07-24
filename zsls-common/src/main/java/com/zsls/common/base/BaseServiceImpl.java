@@ -1,7 +1,5 @@
 package com.zsls.common.base;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,31 +57,6 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 		return mapper.select(record);
 	}
 
-	/**
-	 * 分页查询
-	 *
-	 * @param pageNum
-	 * @param pageSize
-	 * @param record
-	 * @return
-	 */
-	@Override
-	public PageResult<T> queryPageListByCondition(T record, Integer pageNum, Integer pageSize) {
-		// 设置分页条件
-		PageHelper.startPage(pageNum, pageSize);
-		List<T> list = this.queryListByCondition(record);
-		Page<T> page = (Page<T>) list;
-		return new PageResult<T>(list, page.getTotal(), pageNum, pageSize);
-	}
-
-	@Override
-	public PageResult<T> queryPageListOrderByCondition(T record, Integer page, Integer rows, String order) {
-		// 设置分页条件
-		PageHelper.startPage(page, rows,order);
-		List<T> list = this.queryListByCondition(record);
-		Page<T> row = (Page<T>) list;
-		return new PageResult<T>(list, row.getTotal(), page, rows);
-	}
 
 	/**
 	 * 新增数据，返回成功的条数

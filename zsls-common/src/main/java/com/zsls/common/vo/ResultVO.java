@@ -110,6 +110,10 @@ public class ResultVO<T> {
     public static <T> ResultVO<T> failure(Integer code,String message) {
         return new ResultVO<T>(code, message);
     }
+
+    public static <T> ResultVO<T> failure(String message) {
+        return new ResultVO<T>(ResultEnum.FAILED.getCode(), message);
+    }
     public static <T> ResultVO<T> failure(Integer code,String message,T data) {
         return new ResultVO<T>(code, message,data);
     }
