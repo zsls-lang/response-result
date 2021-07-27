@@ -43,19 +43,10 @@ public class ExceptionControllerAdvice {
             return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
         }else {
             if (ex instanceof UndeclaredThrowableException) {
-                throwable = ex.getCause();
-                exceptionEnum = this.getExceptionEnum(throwable);
-                if (exceptionEnum != null) {
-                    return ResultVO.failure(exceptionEnum, ex.getMessage());
-                }
+                    return ResultVO.failure(this.getExceptionEnum(ex.getCause()), ex.getMessage());
             } else {
-                exceptionEnum = this.getExceptionEnum(ex);
-                if (exceptionEnum != null) {
-                    return ResultVO.failure(exceptionEnum, ex.getMessage());
-                }
+                    return ResultVO.failure(this.getExceptionEnum(ex), ex.getMessage());
             }
-
-            return ResultVO.failure(ExceptionEnum.Exception,ex.getMessage());
         }
     }
 

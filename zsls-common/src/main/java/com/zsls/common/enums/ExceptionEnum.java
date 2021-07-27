@@ -58,6 +58,6 @@ public enum ExceptionEnum implements CodeMessageEnum{
     }
 
     public static ExceptionEnum getExceptionEnumByName(String exceptionName) {
-        return Arrays.stream(values()).filter(x->x.getExceptionName().equals(exceptionName)).findAny().orElse(null);
+        return Arrays.stream(values()).filter(x->x.getExceptionName().equals(exceptionName)).findAny().orElse(Exception);
     }
 }
