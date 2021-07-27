@@ -26,8 +26,6 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(Exception.class)
     public ResultVO handleException(Exception ex) {
         logger.error("记录异常",ex);
-        Throwable throwable = null;
-        ExceptionEnum exceptionEnum = null;
         if (ex instanceof CustomException) {
             CustomException customException = (CustomException) ex;
             return ResultVO.failure(customException.getCodeMessageEnum(),ex.getMessage());
@@ -51,36 +49,7 @@ public class ExceptionControllerAdvice {
     }
 
     private ExceptionEnum getExceptionEnum(Throwable ex) {
-        String name = "";
-        if (ex instanceof StringIndexOutOfBoundsException) {
-            name = StringIndexOutOfBoundsException.class.getName();
-        } else if (ex instanceof NullPointerException) {
-            name = NullPointerException.class.getName();
-        } else if (ex instanceof ClassCastException) {
-            name = ClassCastException.class.getName();
-        } else if (ex instanceof ArrayIndexOutOfBoundsException) {
-            name = ArrayIndexOutOfBoundsException.class.getName();
-        } else if (ex instanceof SecurityException) {
-            name = SecurityException.class.getName();
-        } else if (ex instanceof EOFException) {
-            name = EOFException.class.getName();
-        } else if (ex instanceof FileNotFoundException) {
-            name = FileNotFoundException.class.getName();
-        } else if (ex instanceof NumberFormatException) {
-            name = NumberFormatException.class.getName();
-        } else if (ex instanceof SQLException) {
-            name = SQLException.class.getName();
-        } else if (ex instanceof IOException) {
-            name = IOException.class.getName();
-        } else if (ex instanceof NoSuchMethodException) {
-            name = NoSuchMethodException.class.getName();
-        } else if (ex instanceof RuntimeException) {
-            name = RuntimeException.class.getName();
-        } else if (ex instanceof NoSuchMethodException) {
-            name = Exception.class.getName();
-        }
-
-        return ExceptionEnum.getExceptionEnumByName(name);
+        return ExceptionEnum.getExceptionEnumByName(ex.getClass().getName());
     }
 
 }
