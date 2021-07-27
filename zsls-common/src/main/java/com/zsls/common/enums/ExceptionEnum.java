@@ -18,6 +18,7 @@ public enum ExceptionEnum implements CodeMessageEnum{
     IO(-1009, "输入输出异常", IOException.class.getName(), ""),
     NoSuchMethod(-1010, "方法不存在异常", NoSuchMethodException.class.getName(), "方法不存在异常。当访问某个类的不存在的方法时抛出该异常。"),
     StringIndexOutOfBounds(-1011, "字符串索引越界异常", StringIndexOutOfBoundsException.class.getName(), "字符串索引越界异常。当使用索引值访问某个字符串中的字符，而该索引值小于0或大于等于序列大小时，抛出该异常。"),
+    Arithmetic(-1012, "数学运算异常", ArithmeticException.class.getName(), "例如程序中出现了除以零这样的运算，抛出该异常。"),
     Runtime(-2, "运行时异常", RuntimeException.class.getName(), "是所有Java虚拟机正常操作期间可以被抛出的异常的父类。"),
     Exception(-1, "未知的错误", Exception.class.getName(), "系统最大的exception父类");
 
