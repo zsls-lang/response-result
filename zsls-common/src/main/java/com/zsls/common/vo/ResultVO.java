@@ -122,7 +122,10 @@ public class ResultVO<T> {
      */
     public static <T> ResultVO<T> failure(CodeMessageEnum resultEnum, T data) {
         if (resultEnum == null) {
-            return new ResultVO<T>(resultEnum, null);
+            if(data instanceof String){
+                return failure(ResultEnum.FAILED.getCode(),String.valueOf(data));
+            }
+            return failure(ResultEnum.FAILED,data);
         }
         return new ResultVO<T>(resultEnum, data);
     }
