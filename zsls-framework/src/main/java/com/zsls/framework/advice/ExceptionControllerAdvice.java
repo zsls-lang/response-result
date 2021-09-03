@@ -40,11 +40,7 @@ public class ExceptionControllerAdvice {
             ObjectError objectError = bindException.getBindingResult().getAllErrors().get(0);
             return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
         }else {
-            if (ex instanceof UndeclaredThrowableException) {
-                    return ResultVO.failure(this.getExceptionEnum(ex.getCause()), ex.getMessage());
-            } else {
-                    return ResultVO.failure(this.getExceptionEnum(ex), ex.getMessage());
-            }
+            return ResultVO.failure(this.getExceptionEnum(ex.getCause()), ex.getMessage());
         }
     }
 
