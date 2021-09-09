@@ -102,7 +102,7 @@ public class DatasourceConfig {
         return sessionFactory.getObject();
     }
 
-    @Bean(name = "dataSourceTransactionManagerFrameork")
+    @Bean(name = "dataSourceTransactionManagerFramework")
     @Primary
     public DataSourceTransactionManager dataSourceTransactionManagerFrameork(@Qualifier("dataSourceFramework") DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
