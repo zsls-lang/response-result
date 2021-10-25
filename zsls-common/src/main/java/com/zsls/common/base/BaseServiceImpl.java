@@ -74,6 +74,11 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 		return mapper.insertList(var1);
 	}
 
+	@Override
+	public int insertUseGeneratedKeys(T record) {
+		return mapper.insertUseGeneratedKeys(record);
+	}
+
 	/**
 	 * 新增数据，使用不为null的字段，返回成功的条数
 	 *

@@ -84,6 +84,14 @@ import java.util.List;
 	 int insertList(List<T> var1);
 
 	/**
+	 * 添加返回主键
+	 * 不过滤为空字段
+	 * @param record
+	 * @return
+	 */
+	int insertUseGeneratedKeys(T record);
+
+	/**
 	 * 新增数据，使用不为null的字段，返回成功的条数
 	 *
 	 * @param record
