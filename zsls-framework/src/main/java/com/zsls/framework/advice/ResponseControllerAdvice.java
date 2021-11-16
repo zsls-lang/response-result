@@ -4,6 +4,7 @@
  */
 package com.zsls.framework.advice;
 
+import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zsls.common.vo.ResultVO;
@@ -41,12 +42,14 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
         ServerHttpResponse serverHttpResponse) {
         // String类型转换错误，所以要进行些特别的处理
         if(methodParameter.getParameterType().equals(String.class)){
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                return objectMapper.writeValueAsString(ResultVO.success(o));
-            } catch (JsonProcessingException e) {
-                logger.error(e.getMessage());
-            }
+            serverHttpResponse.getHeaders().set("content-type","application/json;charset=utf-8");
+            return JSONUtil.toJsonStr(ResultVO.success(o));
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            try {
+//                return objectMapper.writeValueAsString(ResultVO.success(o));
+//            } catch (JsonProcessingException e) {
+//                logger.error(e.getMessage());
+//            }
         }
 
         return ResultVO.success(o);
