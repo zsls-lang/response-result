@@ -4,6 +4,7 @@ import com.zsls.common.enums.ExceptionEnum;
 import com.zsls.common.enums.ResultEnum;
 import com.zsls.common.exception.CustomException;
 import com.zsls.common.vo.ResultVO;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
@@ -11,12 +12,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.io.EOFException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.UndeclaredThrowableException;
-import java.sql.SQLException;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
@@ -40,12 +35,13 @@ public class ExceptionControllerAdvice {
             ObjectError objectError = bindException.getBindingResult().getAllErrors().get(0);
             return ResultVO.failure(ResultEnum.VALIDATE_FAILED, objectError.getDefaultMessage());
         }else {
-            return ResultVO.failure(this.getExceptionEnum(ex.getCause()), ex.getMessage());
+            String exName = ObjectUtils.isEmpty(ex.getCause()) ? ex.getClass().getName() : ex.getCause().getClass().getName();
+            return ResultVO.failure(this.getExceptionEnum(exName), ex.getMessage());
         }
     }
 
-    private ExceptionEnum getExceptionEnum(Throwable ex) {
-        return ExceptionEnum.getExceptionEnumByName(ex.getClass().getName());
+    private ExceptionEnum getExceptionEnum(String exName) {
+        return ExceptionEnum.getExceptionEnumByName(exName);
     }
 
 }

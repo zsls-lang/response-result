@@ -4,9 +4,8 @@
  */
 package com.zsls.framework.advice;
 
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.json.JSONUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zsls.common.vo.ResultVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +16,8 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author zsls
@@ -37,21 +38,16 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
         return !methodParameter.getParameterType().equals(ResultVO.class);
     }
 
-    @Override public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType,
-        Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
-        ServerHttpResponse serverHttpResponse) {
+    @Override
+    public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType,
+                                  Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
+                                  ServerHttpResponse serverHttpResponse) {
         // String类型转换错误，所以要进行些特别的处理
-        if(methodParameter.getParameterType().equals(String.class)){
-            serverHttpResponse.getHeaders().set("content-type","application/json;charset=utf-8");
+        if (methodParameter.getParameterType().equals(String.class)) {
+            serverHttpResponse.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+            serverHttpResponse.getHeaders().setAcceptCharset(ListUtil.of(StandardCharsets.UTF_8));
             return JSONUtil.toJsonStr(ResultVO.success(o));
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            try {
-//                return objectMapper.writeValueAsString(ResultVO.success(o));
-//            } catch (JsonProcessingException e) {
-//                logger.error(e.getMessage());
-//            }
         }
-
         return ResultVO.success(o);
     }
 }
