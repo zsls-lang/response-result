@@ -1,8 +1,10 @@
 package com.zsls.framework.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.xa.DruidXADataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.alibaba.druid.util.Utils;
 import com.zsls.common.base.BaseMapper;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.io.VFS;
@@ -24,11 +26,13 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import tk.mybatis.mapper.autoconfigure.SpringBootVFS;
 import tk.mybatis.spring.annotation.MapperScan;
 
+import javax.servlet.*;
 import javax.sql.DataSource;
+import java.io.IOException;
 
 
 @Configuration
-@MapperScan(basePackages = "com.zsls.*.dao",markerInterface = BaseMapper.class, sqlSessionTemplateRef =
+@MapperScan(basePackages = "com.zsls.framework.mapper",markerInterface = BaseMapper.class, sqlSessionTemplateRef =
     "sqlSessionTemplateFramework")
 public class DatasourceConfig {
     public static final String COMMA_SEPARATOR = ",";
@@ -45,7 +49,7 @@ public class DatasourceConfig {
     @ConfigurationProperties(prefix = "spring.datasource.framework")
     @Primary
     public DataSource dataSourceFramework(){
-        DruidDataSource dataSource = new DruidDataSource();
+        DruidDataSource dataSource = new DruidXADataSource();
         return dataSource;
 
     }
@@ -67,6 +71,47 @@ public class DatasourceConfig {
         registrationBean.addInitParameter("urlPatterns", "/*");
         registrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*");
         return registrationBean;
+    }
+
+    /**
+     * 除去页面底部的广告
+     */
+    @Bean
+    public FilterRegistrationBean removeDruidAdFilterRegistrationBean() {
+        // 提取common.js的配置路径
+        String pattern = "/druid/*";
+        String commonJsPattern = pattern.replaceAll("\\*", "js/common.js");
+
+        final String filePath = "support/http/resources/js/common.js";
+
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean(
+                //创建filter进行过滤
+                new Filter() {
+                    @Override
+                    public void init(FilterConfig filterConfig) throws ServletException {
+                    }
+
+                    @Override
+                    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+                        chain.doFilter(request, response);
+                        // 重置缓冲区，响应头不会被重置
+                        response.resetBuffer();
+                        // 获取common.js
+                        String text = Utils.readFromResource(filePath);
+                        // 正则替换banner, 除去底部的广告信息
+                        text = text.replaceAll("<a.*?banner\"></a><br/>", "");
+                        text = text.replaceAll("powered.*?shrek.wang</a>", "");
+                        response.getWriter().write(text);
+                    }
+
+                    @Override
+                    public void destroy() {
+                    }
+                }
+        );
+        registrationBean.addUrlPatterns(commonJsPattern);
+        return registrationBean;
+
     }
 
 
