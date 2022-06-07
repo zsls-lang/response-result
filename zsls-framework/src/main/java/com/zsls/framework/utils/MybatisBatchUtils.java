@@ -23,7 +23,7 @@ public class MybatisBatchUtils {
     
     /**
     * 批量处理修改或者插入
-    *
+    *batchUtils.batchUpdateOrInsert(数据集合, xxxxx.class, (item, mapper实例对象) -> mapper实例对象.insert方法(item));
     * @param data     需要被处理的数据
     * @param mapperClass  Mybatis的Mapper类
     * @param function 自定义处理逻辑
